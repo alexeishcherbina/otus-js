@@ -1,4 +1,4 @@
-function getPath(el) {
+const  getPath = el => {
     function getChildNumber(parent, element) {
         const children = parent.children;
         if (children.length === 0) {
