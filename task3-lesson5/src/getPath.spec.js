@@ -36,4 +36,9 @@ describe('getPath', () => {
       expect(document.querySelector(getPath(section))).toBe(section);
   });
 
+  it('should find only one section', () => {
+    const section = document.querySelector('.section');
+    expect(document.querySelectorAll(getPath(section)).length).toBe(1);
+  });
+
 });
