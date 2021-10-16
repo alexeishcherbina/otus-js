@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "sinon": "^9.2.4",
+    "jest": "^26.6.3"
+  }
+}
