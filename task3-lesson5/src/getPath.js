@@ -1,11 +1,15 @@
 const  getPath = el => {
     function getChildNumber(parent, element) {
         const children = parent.children;
-        if (children.length === 0) {
-            return element.nodeName;
-        } else {
-            return element.nodeName + ':nth-child(' + (Array.prototype.indexOf.call(children, element) + 1) + ')';
+        let classNameSelector = '';
+        let nthChildSelector = '';
+        if (element.className) {
+            classNameSelector = '.' + element.className;
         }
+        if (children.length !== 0) {
+            nthChildSelector = ':nth-child(' + (Array.prototype.indexOf.call(children, element) + 1) + ')';
+        }
+        return element.nodeName + classNameSelector + nthChildSelector;
     }
 
     let selector = '';

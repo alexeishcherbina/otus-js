@@ -43,7 +43,7 @@ describe('getPath', () => {
 
   it('should find shortly if has id', () => {
     const li = document.querySelector('.li-9');
-    expect(getPath(li)).toBe('#ul_in_last_section>LI:nth-child(2)');
+    expect(getPath(li)).toBe('#ul_in_last_section>LI.li-9:nth-child(2)');
   });
 
 });
