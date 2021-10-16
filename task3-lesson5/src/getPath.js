@@ -7,7 +7,8 @@ const  getPath = el => {
             classNameSelector = '.' + element.className;
         }
         if (children.length !== 0) {
-            nthChildSelector = ':nth-child(' + (Array.prototype.indexOf.call(children, element) + 1) + ')';
+            nthChildSelector = ':nth-child(' + (Array.from(children).indexOf(element) + 1) + ')';
+            
         }
         return element.nodeName + classNameSelector + nthChildSelector;
     }
