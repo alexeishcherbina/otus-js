@@ -14,7 +14,7 @@ function getPath(el) {
         selector = '>' + getChildNumber(curEl.parentNode, curEl) + selector;
         curEl = curEl.parentNode;
     }
-
+    
     selector = 'BODY ' + selector;
     return selector;
 }

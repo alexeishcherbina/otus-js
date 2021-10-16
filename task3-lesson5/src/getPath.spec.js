@@ -21,7 +21,7 @@ describe('getPath', () => {
         </div>
       </section>
       <section>
-        <ul>
+        <ul id="ul_in_last_section">
           <li>8</li>
           <li class="li-9">9</li>
           <li>10</li>
@@ -39,6 +39,11 @@ describe('getPath', () => {
   it('should find only one section', () => {
     const section = document.querySelector('.section');
     expect(document.querySelectorAll(getPath(section)).length).toBe(1);
+  });
+
+  it('should find shortly if has id', () => {
+    const li = document.querySelector('.li-9');
+    expect(getPath(li)).toBe('#ul_in_last_section>LI:nth-child(2)');
   });
 
 });
