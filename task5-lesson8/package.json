@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "node --max-old-space-size=50 sort_big_file.js"
+  },
+  "dependencies": {
+    "n-readlines": "^1.0.1"
+  }
+}
