@@ -1,0 +1,23 @@
+{
+  "name": "task4-lesson7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tree": "node tree.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexeishcherbina/otus-js.git"
+  },
+  "keywords": [
+    "task"
+  ],
+  "author": "alexei shcherbina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexeishcherbina/otus-js/issues"
+  },
+  "homepage": "https://github.com/alexeishcherbina/otus-js#readme"
+}
