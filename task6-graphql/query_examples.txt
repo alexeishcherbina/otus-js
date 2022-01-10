@@ -1,0 +1,100 @@
+mutation createArticle {
+  createArticle(articleInput: {name: "Test Article 1", description: "Test Article", price: 10, discount: 10}) {
+    _id
+    name
+    description
+    price
+    discount
+  }
+}
+
+query allArticles {
+  allArticles {
+    _id
+    name
+    description
+    price
+    discount
+  }
+}
+
+query discountArticles {
+  discountArticles {
+    _id
+    name
+    description
+    price
+    discount
+  }
+}
+
+mutation updateArticle {
+  updateArticle(id: "61ca1f8e78af3e3b3c14de30", articleInput: {name: "New Versopn Test Product", description: "The Best Product", price: 1000}) {
+    _id
+    name
+    description
+    price
+    discount
+  }
+}
+
+mutation deleteArticle {
+  deleteArticle(id: "61ca103289d18c0a1459b134") {
+    _id
+    name
+    description
+    price
+    discount
+  }
+}
+
+mutation createUser {
+  createUser(userInput: {firstName: "Super", lastName: "Man", discount: 99}) {
+    _id
+    firstName
+    lastName
+    discount
+  }
+}
+
+query allUsers {
+  allUsers {
+    _id
+    firstName
+    lastName
+    discount
+  }
+}
+
+mutation updateUser {
+  updateUser(id: "61ca2362cea17746c4474850", userInput: {firstName: "Super-Puper", lastName: "Man", discount: 100}) {
+    _id
+    firstName
+    lastName
+    discount
+  }
+}
+
+mutation createOrder {
+  createOrder(orderInput: {items: ["61ca1f8e78af3e3b3c14de30", "61ca129fdbc71f3d60d202e0"], userId: "61ca2362cea17746c4474850"}) {
+    _id
+    items
+    userId
+  }
+}
+
+query allOrders {
+  allOrders {
+    _id
+    items
+    userId
+  }
+}
+
+mutation updateOrder {
+  updateOrder(id: "61ca1902742e5744f03fa480", orderInput: {items: ["61ca129fdbc71f3d60d202e0"], userId: "61ca2362cea17746c4474850"}) {
+    _id
+    items
+    userId
+  }
+}
