@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomElements HW</title>
+</head>
+<script>
+    const json = `{
+                "id": 1,
+                "items": [{
+                    "id": 2,
+                    "items": [{ "id": 3 }]
+                }, {
+                "id": 4,
+                "items": [
+                    { "id": 5, 
+                    "items": [ {"id": 6 }]
+                    }, 
+                    { "id": 7}
+                    ]
+                }]
+            }`;
+
+    class MyRoot extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            this.json = json;
+            const treeObj = JSON.parse(this.json);
+            function showTreeRec(tree, parentId) {
+                // debugger;
+                let parentNode, parentLevel;
+                if (parentId === -1) {
+                    parentNode = this.shadowRoot;
+                    parentLevel = 0;
+                } else {
+                    parentNode = this.shadowRoot.getElementById(parentId);
+                    parentLevel = parseInt(parentNode.getAttribute('level'));
+                }
+                let child;
+                if (tree.items) {
+                    child = document.createElement('my-tree');
+                } else {
+                    child = document.createElement('my-leaf');
+                }
+                child.setAttribute('id', tree.id);
+                child.setAttribute('level', parentLevel + 1);
+                const childTextDiv = child.shadowRoot.querySelector('.name');
+                childTextDiv.innerText += ' id=' + tree.id;
+                childTextDiv.style.paddingLeft = parentLevel * 10 + 'px';
+                parentNode.appendChild(child);
+                if (tree.items) {
+                    tree.items.forEach((node) => {
+                        showTreeRec.call(this, node, tree.id);
+                    });
+                }
+            }
+
+            showTreeRec.call(this, treeObj, -1);
+        }
+    }
+    customElements.define('my-root', MyRoot);
+
+    class MyTree extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            const template = document.getElementById('tree');
+            const node = document.importNode(template.content, true);
+            this.shadowRoot.appendChild(node);
+        }
+    }
+    customElements.define('my-tree', MyTree);
+
+    class MyLeaf extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            const template = document.getElementById('leaf');
+            const node = document.importNode(template.content, true);
+            this.shadowRoot.appendChild(node);
+        }
+    }
+    customElements.define('my-leaf', MyLeaf);
+</script>
+<body>
+    <template id="tree">
+        <style>
+            .text {
+            color:brown;
+            }
+        </style>
+        <div class="text name">Tree</div>
+        <slot></slot>
+    </template>
+    <template id="leaf">
+        <style>
+            .text {
+            color:green;
+            }
+        </style>
+        <div class="text name">Leaf</div>
+    </template>
+
+    <div id="my-root">
+        <my-root></my-root>
+    </div>
+</body>
+</html>
