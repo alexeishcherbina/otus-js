@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "target": "es6",
+    "module": "es6",
+    "allowJs": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+  },
+  "files": [
+    "app.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}
+

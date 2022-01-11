@@ -8,6 +8,8 @@ const game = () => {
     const introScreen = document.querySelector(".intro");
     const match = document.querySelector(".match");
 
+    if (!playBtn || !introScreen || !match) throw new Error('Html component not found');
+
     playBtn.addEventListener("click", () => {
       introScreen.classList.add("fadeOut");
       match.classList.add("fadeIn");
@@ -16,13 +18,15 @@ const game = () => {
   //Play Match
   const playMatch = () => {
     const options = document.querySelectorAll(".options button");
-    const playerHand = document.querySelector(".player-hand");
-    const computerHand = document.querySelector(".computer-hand");
-    const hands = document.querySelectorAll(".hands img");
+    const playerHand: HTMLImageElement | null = document.querySelector(".player-hand");
+    const computerHand: HTMLImageElement | null = document.querySelector(".computer-hand");
+    const hands: NodeListOf<HTMLElement> = document.querySelectorAll(".hands img");
+
+    if (!playerHand || !computerHand) throw new Error('Player or Computer hand element not found');
 
     hands.forEach(hand => {
       hand.addEventListener("animationend", function() {
-        this.style.animation = "";
+        hand.style.animation = "";
       });
     });
     //Computer Options
@@ -36,9 +40,9 @@ const game = () => {
 
         setTimeout(() => {
           //Here is where we call compare hands
-          compareHands(this.textContent, computerChoice);
+          compareHands(option.textContent, computerChoice);
           //Update Images
-          playerHand.src = `./assets/${this.textContent}.png`;
+          playerHand.src = `./assets/${option.textContent}.png`;
           computerHand.src = `./assets/${computerChoice}.png`;
         }, 2000);
         //Animation
@@ -51,13 +55,15 @@ const game = () => {
   const updateScore = () => {
     const playerScore = document.querySelector(".player-score p");
     const computerScore = document.querySelector(".computer-score p");
-    playerScore.textContent = pScore;
-    computerScore.textContent = cScore;
+    if (!playerScore || !computerScore) throw new Error('Player or Computer Score components not found');
+    playerScore.textContent = String(pScore);
+    computerScore.textContent = String(cScore);
   };
 
-  const compareHands = (playerChoice, computerChoice) => {
+  const compareHands = (playerChoice: string | null, computerChoice: string) => {
     //Update Text
     const winner = document.querySelector(".winner");
+    if (!winner) throw new Error('Winner component not found');
     //Checking for a tie
     if (playerChoice === computerChoice) {
       winner.textContent = "It is a tie";
